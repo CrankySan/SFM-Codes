@@ -10,7 +10,7 @@ Every 20 ticks do
     OUTPUT TO Interface
 END
 
-EVERY 1 TICKS DO
+EVERY 1 ticks do
     INPUT fe:: FROM Cube Bottom Side
     OUTPUT fe:: TO Hydrobed each side
 END
