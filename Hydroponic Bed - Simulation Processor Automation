@@ -1,15 +1,15 @@
 NAME "Hydroponic Bed - Simulation Processor Automation"
--- This manages input/output for the Hydroponic Bed during the automation of Hydroponic Simulation Processors
+
 EVERY REDSTONE PULSE DO
     INPUT fluid::water,fluid::ether_gas FROM Interface
     OUTPUT fluid::water,fluid::ether_gas TO Hydrobed each Side
-FORGET
+END
+
+Every 20 ticks do
     INPUT FROM Hydrobed Bottom Side
     OUTPUT TO Interface
-FORGET
-    INPUT hydroponic_simulation_processor FROM Interface
-    OUTPUT hydroponic_simulation_processor TO Hydrobed each Side
 END
+
 EVERY 1 TICKS DO
     INPUT fe:: FROM Cube Bottom Side
     OUTPUT fe:: TO Hydrobed each side
