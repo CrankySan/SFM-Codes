@@ -1,0 +1,126 @@
+NAME "BEE Egg Automation + Bee Upgrading"
+
+-- This Bee Program automatically raises manually inserted
+-- adult bee breeding pairs, squashes them, sorts their genes,
+-- crafts them into treats, and finally crafts a bee spawn egg
+
+-- and upgrades inserted bees in dispenser. (Sensor)
+-- It is necessary to put an Inventory Checker on the GeneKit (barrel)
+-- or on Sensor (dispenser) to drop out the Bee.
+-- Otherwise, the bee stays too long in the inventory and it will
+-- constantly send out Bee Kits (genes).
+
+-- Energy Distribution
+Every 1 ticks do
+    input fe:: from Cube east side
+    output fe:: to Incubator
+    output fe:: to Breeder
+    output fe:: to Centrifuge
+    output fe:: to Crafter
+    output fe:: to EGGCubator
+    output fe:: to Sensor
+    output fe:: to Clicker
+end
+-- Some Item Distributions
+
+  -- Flower Distribution
+  Every 20 ticks do
+    Input from Flower
+    Output retain 4 to each Breeder slots 3
+    Output retain 4 to each Breeder slots 4
+  end
+
+  -- Bee Cage Distribution
+  Every 20 ticks do
+    input from Cage
+    output to Breeder round robin by block
+  end
+
+  -- Glass Bottle Distribution
+  Every 20 ticks do
+    Input from Bottle
+    Output to Bottler round robin by block
+  end
+
+  -- Egg Distribution
+  Every 20 ticks do
+    input from Egg
+    Output to EGGCubator round robin by block
+  end
+
+  -- Honey Treat Distribution
+  Every 20 ticks do
+    input retain 64 Honey_Treat from Treat
+    output Honey_Treat to Incubator round robin by block
+    output retain 64 Honey_Treat to Crafter round robin by block
+  end
+
+-- Bee Egg Processing
+  -- Bee Raising
+  Every 20 ticks do
+   input from Breeder
+   output to Incubator round robin by block
+  end
+
+  -- Bee squashing
+  Every 20 ticks do
+   input from each Incubator
+   output to Dispenser round robin by block
+  end
+
+  -- Gene Distribution
+  every 20 ticks do
+    input from each Centrifuge
+    output to Gene round robin by block
+
+  end
+
+  -- Gene Sorting
+  Every 20 ticks do
+    input from Gene
+    output to GeneDrawer
+  end
+
+  -- Gene Crafting
+  Every 20 ticks do
+    input from GeneDrawer
+    output to Crafter
+  end
+
+  -- Gene Treat Sorting
+  Every 20 ticks do
+   input from Crafter
+   output to GeneTreat1, GeneTreat2, GeneTreat3, GeneTreat4, GeneTreat5
+   output to TypeGeneTreat
+  end
+
+  -- Bee Egg Creation
+  Every 20 ticks do
+   input from TypeGeneTreat
+   output to EGGCubator round robin by block
+  end
+
+  -- Final Result Distribution
+  Every 20 ticks do
+   input from EGGCubator
+   output to "Output"
+  end
+
+-- Bee Upgrading Task
+-- Triggers when a Bee Egg Manually is put in Sensor (Dispenser)
+  Every 20 ticks do
+    -- check Sensor (Dispenser) for any item, start deliver Gene
+    if Sensor has >=1 then
+        -- take All 5 Different Genes from GeneTreat1-3 (Drawer)
+        input 1 from GeneTreat1
+        input 1 from GeneTreat2
+        input 1 from GeneTreat3
+        input 1 from GeneTreat4
+        input 1 from GeneTreat5
+        -- Send Genes to GeneKit (Barrel)
+        output to GeneKit
+        -- Send a Bee Cage to Catcher
+        input 1 from Cage
+        output 1 to Catcher
+    end
+end
