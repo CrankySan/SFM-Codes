@@ -1,11 +1,11 @@
 NAME "Simulated Hydroponic Bed Farm"
 
-EVERY 12 TICKS DO
+EVERY 1 TICKS DO
     INPUT fe:: FROM cube Bottom Side
     OUTPUT fe:: TO bed Bottom Side
 END
 
-EVERY 120 TICKS DO
+EVERY 20 TICKS DO
     INPUT FROM bed Bottom Side
     OUTPUT TO EMPTY SLOTS IN interface
 END
