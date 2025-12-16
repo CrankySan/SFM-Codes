@@ -1,0 +1,21 @@
+-- Energy Distribution
+Every 1 ticks do
+    input fe:: from cube south side
+    output fe:: to power
+end
+
+-- Prediction Matrix Distribution
+Every 20 ticks do
+    Input from matrix bottom side
+    Output to each sim slots 1
+end
+
+Every 20 ticks do
+    Input from each sim slots 2
+    Output to "output"
+end
+
+Every 20 ticks do
+    Input from each loot slots 1-16
+    Output to "output"
+end
