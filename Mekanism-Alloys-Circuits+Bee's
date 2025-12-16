@@ -1,0 +1,145 @@
+-- Energy Distribution
+Every 1 ticks do
+    input fe:: from cube each side
+    output fe:: to power each side
+end
+
+-- Bee Handling
+Every 20 ticks do
+    Input configurable_comb, configurable_honeycomb from hive
+    Output configurable_comb,  configurable_honeycomb to centrifuge round robin by block
+End
+
+Every 20 ticks do
+    Input pollen_puff from hive
+    Output pollen_puff to "output"
+End
+
+
+Every 20 ticks do
+    Input from centrifuge
+    Output to "redstone", diamonds
+End
+
+Every 20 ticks do
+    Input raw_* from centrifuge
+    Output raw_* to furnace
+End
+
+
+Every 20 ticks do
+    Input from furnace
+    Output to copper, osmium
+End
+
+-- Redstone Distribution
+Every 20 ticks do
+    input "redstone" from "redstone"
+    output redstone to infusedalloyinfuser, basiccircuitinfuser,
+    advancedinfuser round robin by block bottom side
+end
+
+-- Diamonds Distribution
+Every 20 ticks do
+    input from diacrusher bottom side
+    output to obsidianinfuser, reinforcedalloyinfuser,
+    elitecircuitinfuser round robin by block bottom side
+end
+
+Every 20 ticks do
+    input from diamonds
+    output to diacrusher bottom side
+end
+
+-- Obsidian Distribution
+Every 20 ticks do
+    input from obsidian
+    output to obsidiancrusher bottom side
+end
+
+Every 20 ticks do
+    input from obsidiancrusher bottom side
+    output to obsidianinfuser north side
+end
+
+Every 20 ticks do
+    input from obsidianinfuser north side
+    output to atomicalloyinfuser, ultimatecircuitinfuser round robin by block bottom side
+end
+
+-- Infused Alloy
+Every 20 ticks do
+    input from copper
+    output to infusedalloyinfuser east side
+end
+
+Every 20 ticks do
+    input from infusedalloyinfuser east side
+    output to infusedalloy
+end
+
+-- Reinforced Alloy
+Every 20 ticks do
+    input retain 128 from infusedalloy
+    output to reinforcedalloyinfuser east side
+end
+
+Every 20 ticks do
+    input from reinforcedalloyinfuser east side
+    output to reinforcedalloy
+end
+
+-- Atomic Alloy
+Every 20 ticks do
+    input retain 64 from reinforcedalloy
+    output to atomicalloyinfuser east side
+end
+
+Every 20 ticks do
+    input from atomicalloyinfuser east side
+    output to atomicalloy
+end
+
+-- Basic Controll Circuit
+Every 20 ticks do
+    input from osmium
+    output to basiccircuitinfuser east side
+end
+
+Every 20 ticks do
+    input from basiccircuitinfuser east side
+    output to basiccircuit
+end
+
+--Advanced Controll Circuit
+Every 20 ticks do
+    input retain 128 from basiccircuit
+    output to advancedinfuser east side
+end
+
+Every 20 ticks do
+    input from advancedinfuser east side
+    output to advancedcircuit
+end
+
+--Elite Controll Circuit
+Every 20 ticks do
+    input retain 64 from advancedcircuit
+    output to elitecircuitinfuser east side
+end
+
+Every 20 ticks do
+    input from elitecircuitinfuser east side
+    output to elitecircuit
+end
+
+-- Ultimate Controll Circuit
+Every 20 ticks do
+    input retain 32 from elitecircuit
+    output to ultimatecircuitinfuser east side
+end
+
+Every 20 ticks do
+    input from ultimatecircuitinfuser east side
+    output to ultimatecircuit
+end
