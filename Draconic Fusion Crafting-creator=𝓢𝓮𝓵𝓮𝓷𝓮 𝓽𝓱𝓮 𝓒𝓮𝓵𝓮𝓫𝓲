@@ -1,0 +1,31 @@
+name "Draconic Fusion Crafting"
+
+every 20 ticks do
+-- Chaotic Core Crafting
+    if chest slots 0 has = 5 "large_chaos_frag" THEN
+      input from chest slots 0
+      output 1 to core slots 0
+      output 1 to each injector
+      forget
+    end
+
+-- Move item to core
+    input from chest slots 0
+    output to core slots 0
+    forget
+
+-- Move item to injectors
+    input from chest slots 1-26
+    output 1 to each injector
+    forget
+
+-- Move core output to ME Interface
+    input from core slots 1
+    output to interface
+    forget
+end
+
+   Every 1 ticks do
+   input fe:: from cube bottom side
+   output fe:: to injector
+end
