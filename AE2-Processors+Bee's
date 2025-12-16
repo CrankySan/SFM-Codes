@@ -1,0 +1,164 @@
+NAME "AE2 Automation"
+
+-- Energy Distribution
+Every 1 ticks do
+    input fe:: from cube south side
+    output fe:: to centrifuge top side
+    output fe:: to furnace top side
+    output fe:: to fluixpress top side
+    output fe:: to siliconpress top side
+    output fe:: to calculationpress top side
+    output fe:: to calculationprocessor top side
+    output fe:: to logicpress top side
+    output fe:: to logicprocessor top side
+    output fe:: to engineeringpress top side
+    output fe:: to engineeringprocessor top side
+    output fe:: to concurrentpress top side
+    output fe:: to concurrentprocessor top side
+    output fe:: to energypress top side
+    output fe:: to energyprocessor top side
+    output fe:: to accumulationpress top side
+    output fe:: to accumulationprocessor top side
+End
+
+-- Bee Handling
+Every 20 ticks do
+    Input configurable_comb, configurable_honeycomb from hive
+    Output configurable_comb,  configurable_honeycomb to centrifuge round robin by block
+End
+
+Every 20 ticks do
+    Input pollen_puff from hive
+    Output to enderchest
+end
+
+Every 20 ticks do
+    Input certus_quartz_dust from centrifuge
+    Output to enderchest
+end
+
+Every 20 ticks do
+    Input from centrifuge
+    Output to silicon, "redstone", "diamond", "certusquartzcrystal",
+    entrocrystal, chargedredstonecrystal, skysteelingot, fluixdust
+End
+
+Every 20 ticks do
+    Input fluix_crystal from centrifuge
+    Output fluix_crystal to fluixcrystal
+End
+
+Every 20 ticks do
+    Input fluix_crystal from fluixcrystal
+    Output fluix_crystal to fluixpress slots 2
+End
+
+
+Every 20 ticks do
+    Input redstone_crystal from centrifuge
+    Output to enderchest
+End
+
+Every 20 ticks do
+    input raw_gold from centrifuge
+    output to furnace
+end
+
+Every 20 ticks do
+    input from furnace
+    output to "gold", "silicon"
+end
+
+--Silicon to Siliconpress
+Every 20 ticks do
+    Input silicon from silicon
+    Output silicon to siliconpress round robin by block slots 2
+End
+
+--Redstone to Processor Inscribers
+
+Every 20 ticks do
+    Input "redstone" from "redstone"
+    Output to calculationprocessor round robin by block slots 2
+    Output to logicprocessor round robin by block slots 2
+    Output to engineeringprocessor round robin by block slots 2
+    Output to concurrentprocessor round robin by block slots 2
+    Output to energyprocessor round robin by block slots 2
+End
+
+-- Fluix Dust to Processor Inscriber
+Every 20 ticks do
+   input from fluixpress
+   output to fluixdust
+end
+
+Every 20 ticks do
+    input from fluixdust
+    output to accumulationprocessor slots 2
+end
+
+--Calculation Processor
+Every 20 ticks do
+    Input certus_quartz_crystal from "certusquartzcrystal"
+    Output to calculationpress slots 2
+End
+
+Every 20 ticks do
+    Input calculation_processor from calculationprocessor
+    Output to "output"
+End
+
+--Logic Processor
+Every 20 ticks do
+    Input gold_ingot from "gold"
+    Output to logicpress slots 2
+End
+
+Every 20 ticks do
+    Input logic_processor from logicprocessor
+    Output to "output"
+End
+
+--Engineering Processor
+Every 20 ticks do
+    Input diamond from "diamond"
+    Output to engineeringpress slots 2
+End
+
+Every 20 ticks do
+    Input engineering_processor from engineeringprocessor
+    Output to "output"
+End
+
+-- Concurrent Processor
+Every 20 ticks do
+    Input from entrocrystal
+    Output to concurrentpress slots 2
+End
+
+Every 20 ticks do
+    Input concurrent_processor from concurrentprocessor
+    Output to "output"
+End
+
+-- Energy Processor
+Every 20 ticks do
+    Input from chargedredstonecrystal
+    Output to energypress slots 2
+End
+
+Every 20 ticks do
+    Input energy_processor from energyprocessor
+    Output to "output"
+End
+
+ -- Accumulation Processor
+Every 20 ticks do
+    Input from skysteelingot
+    Output to accumulationpress slots 2
+End
+
+Every 20 ticks do
+    Input accumulation_processor from accumulationprocessor
+    Output to "output"
+End
