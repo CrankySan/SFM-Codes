@@ -1,0 +1,130 @@
+name "Mekanism Alloy/Circuit Automation"
+
+
+-- Energy Distribution
+Every 20 ticks do
+    input fe:: from cube east side
+    output fe:: to power each side
+end
+
+-- Redstone Distribution
+Every 20 ticks do
+    input "redstone" from "redstone"
+    output redstone to infusedalloyinfuser round robin by block bottom side
+end
+
+Every 20 ticks do
+    input "redstone" from "redstone"
+    output redstone to basiccircuitinfuser round robin by block bottom side
+end
+
+Every 20 ticks do
+    input "redstone" from "redstone"
+    output redstone to advancedinfuser round robin by block bottom side
+end
+
+-- Diamonds Distribution
+
+Every 20 ticks do
+    input from diamonds
+    output to diacrusher bottom side
+end
+
+Every 20 ticks do
+    input retain 1 from diacrusher bottom side
+    output retain 1 to obsidianinfuser, reinforcedalloyinfuser,
+    elitecircuitinfuser round robin by block bottom side
+end
+
+-- Obsidian Distribution
+Every 20 ticks do
+    input from obsidian
+    output to obsidiancrusher bottom side
+end
+
+Every 20 ticks do
+    input from obsidiancrusher bottom side
+    output to obsidianinfuser top side
+end
+
+Every 20 ticks do
+    input from obsidianinfuser top side
+    output to atomicalloyinfuser, ultimatecircuitinfuser round robin by block bottom side
+end
+
+-- Infused Alloy
+Every 20 ticks do
+    input from copper
+    output to infusedalloyinfuser top side
+end
+
+Every 20 ticks do
+    input from infusedalloyinfuser top side
+    output to infusedalloy
+end
+
+-- Reinforced Alloy
+Every 20 ticks do
+    input retain 64 from infusedalloy
+    output to reinforcedalloyinfuser top side
+end
+
+Every 20 ticks do
+    input from reinforcedalloyinfuser top side
+    output to reinforcedalloy
+end
+-- Atomic Alloy
+Every 20 ticks do
+    input retain 64 from reinforcedalloy
+    output to atomicalloyinfuser top side
+end
+
+Every 20 ticks do
+    input from atomicalloyinfuser top side
+    output to atomicalloy
+end
+
+-- Basic Controll Circuit
+Every 20 ticks do
+    input from osmium
+    output to basiccircuitinfuser top side
+end
+
+Every 20 ticks do
+    input from basiccircuitinfuser top side
+    output to basiccircuit
+end
+
+--Advanced Controll Circuit
+Every 20 ticks do
+    input retain 64 from basiccircuit
+    output to advancedinfuser top side
+end
+
+Every 20 ticks do
+    input from advancedinfuser top side
+    output to advancedcircuit
+end
+
+
+--Elite Controll Circuit
+Every 20 ticks do
+    input retain 64 from advancedcircuit
+    output to elitecircuitinfuser top side
+end
+
+Every 20 ticks do
+    input from elitecircuitinfuser top side
+    output to elitecircuit
+end
+
+-- Ultimate Controll Circuit
+Every 20 ticks do
+    input retain 32 from elitecircuit
+    output to ultimatecircuitinfuser top side
+end
+
+Every 20 ticks do
+    input from ultimatecircuitinfuser top side
+    output to ultimatecircuit
+end
