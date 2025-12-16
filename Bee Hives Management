@@ -1,0 +1,46 @@
+EVERY 1 ticks DO
+    INPUT fe:: from cube BOTTOM SIDE
+    OUTPUT fe:: TO centrifuge bottom side
+END
+
+EVERY 20 ticks DO
+    INPUT configurable_honeycomb, configurable_comb FROM hive bottom side
+    OUTPUT configurable_honeycomb, configurable_comb TO centrifuge
+END
+
+EVERY 20 ticks DO
+   INPUT pollen_puff FROM hive north side
+   OUTPUT pollen_puff TO chest
+END
+
+EVERY 20 ticks DO
+    INPUT * FROM centrifuge bottom side
+    OUTPUT * TO chest
+END
+
+Every 20 ticks do
+   input fluid:: from centrifuge bottom side
+   output fluid:: to tank
+end
+
+EVERY 20 ticks DO
+    INPUT log FROM hive
+    OUTPUT log TO chest
+END
+
+EVERY 20 ticks DO
+    INPUT dirt, rooted_dirt, blackstone, sand, clay, chorus_flower, chorus_fruit,
+    eternal_stella, pollen_puff, soul_tree_log, edelwood_log FROM hive
+    OUTPUT dirt, rooted_dirt, blackstone, sand, clay, chorus_flower, chorus_fruit,
+    eternal_stella, pollen_puff, soul_tree_log, edelwood_log TO chest
+END
+
+EVERY 20 ticks DO
+    INPUT otherworld_log, sponge, gilded_blackstone FROM hive
+    OUTPUT otherworld_log, sponge, gilded_blackstone TO chest
+END
+
+EVERY 20 ticks DO
+    INPUT nautilus_shell FROM hive
+    OUTPUT nautilus_shell TO chest
+END
