@@ -1,4 +1,4 @@
-NAME "Hydroponic Bed - Simulation Processor Automation Creator BucketST"
+NAME "Hydroponic Bed - Simulation Processor Automation"
 -- This manages input/output for the Hydroponic Bed during the automation of Hydroponic Simulation Processors
 EVERY REDSTONE PULSE DO
     INPUT fluid::water,fluid::ether_gas FROM Interface
