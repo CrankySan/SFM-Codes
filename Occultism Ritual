@@ -1,0 +1,9 @@
+Name "Occultism Ritual"
+
+Every 20 ticks do
+    Input from "input" slots 1-16
+    Output 1 to each Bowl
+Forget
+    Input from "input" slots 0
+    Output to center_Bowl
+End
