@@ -1,0 +1,12 @@
+Every 20 ticks do
+    Input from "input" slots 1-16
+    Output 1 to each pedestal
+Forget
+    Input from "input" slots 0
+    Output to enchanting
+End
+
+Every 20 ticks do
+   Input from enchanting
+   Output to "output"
+end
